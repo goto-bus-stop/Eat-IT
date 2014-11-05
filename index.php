@@ -6,7 +6,7 @@ session_start();
 
 $router = Router::getInstance();
 
-$db = new PDOConnector('mysql:host=localhost;dbname=hanzecontact', 'root', '');
+$db = new PDOConnector('mysql:host=localhost;dbname=eatit', 'root', '');
 Model::useDB($db);
 
 $router->add('index', 'GET', '/', 'IndexController#get');
