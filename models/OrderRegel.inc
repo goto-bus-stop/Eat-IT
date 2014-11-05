@@ -12,10 +12,11 @@
 class OrderRegel extends Model {
 
   protected static $schema = array(
-    'OrderregelID' => 'id',
+    'orderregelnr' => 'id',
     'ordernr' => 'link:Order',
     'type' => 'string:10',
-    'artikelmaaltijdID' => 'ID',//TODO: HOE?
+    'artikel' => 'link:Artikel',
+    'maaltijd' => 'link:Maaltijd',
   );
 
 }

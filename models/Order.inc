@@ -12,8 +12,8 @@
 class Order extends Model {
 
   protected static $schema = array(
-    'OrderID' => 'id',
-    'Klantnr' => 'link:Klant',
+    'ordernr'=> 'id',
+    'klant' => 'link:Klant',
     'datum' => 'date',
     'bezorgtijd' => 'time',
     'status' => 'string:20',

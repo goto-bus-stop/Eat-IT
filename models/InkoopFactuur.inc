@@ -13,7 +13,7 @@ class InkoopFactuur extends Model {
 
   protected static $schema = array(
     'factuurnr' => 'id',
-    'ordernr' => 'link:InkoopOrder',
+    'order' => 'link:InkoopOrder',
     'betaaldatum' => 'date',
     'status' => 'string:20',
   );

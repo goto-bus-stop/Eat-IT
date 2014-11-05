@@ -13,8 +13,8 @@ class ArtikelOrder extends Model {
 
   protected static $schema = array(
     'artikelordernr' => 'id',
-    'artikelnr' => 'link:Artikel',
-    'ordernr' => 'link:InkoopOrder',
+    'artikel' => 'link:Artikel',
+    'inkooporder' => 'link:InkoopOrder',
     'hoeveelheid' => 'int',
     'leverstatus' => 'int',
   );

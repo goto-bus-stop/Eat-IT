@@ -12,9 +12,9 @@
 class Ingredient extends Model {
 
   protected static $schema = array(
-    'ingedientID' => 'id',
-    'maaltijdID' => 'link:InkoopOrder',
-    'artikelnr' => 'link:InkoopOrder',
+    'ingedientnr' => 'id',
+    'maaltijd' => 'link:Maaltijd',
+    'artikel' => 'link:Artikel',
     'hoeveelheid' => 'int',
   );
 

@@ -12,7 +12,7 @@
 class Maaltijd extends Model {
 
   protected static $schema = array(
-    'maaltijdID' => 'id',
+    'maaltijdnr' => 'id',
     'naam' => 'string:64',
     'prijs' => 'double',
     'beschikbaar' => 'int',

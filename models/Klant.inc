@@ -12,8 +12,8 @@
 class Klant extends Model {
 
   protected static $schema = array(
-    'Klantnr' => 'id',
-    'naam' => 'link:Order',
+    'klantnr' => 'id',
+    'naam' => 'string:64',
     'adres' => 'string:128',
     'postcode' => 'string:8',
     'plaats' => 'string:64',
