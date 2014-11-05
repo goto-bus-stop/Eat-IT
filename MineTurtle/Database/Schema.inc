@@ -31,7 +31,7 @@ class Schema implements \IteratorAggregate {
   public function defineColumn($column, $type) {
     $typeParts = explode(':', $type);
     if ($typeParts[0] === 'link') {
-      $this->links[$column] = array( 'fromColumn' => $column . 'ID', 'toModel' => $typeParts[1] );
+      $this->links[$column] = array( 'fromColumn' => $column, 'toModel' => $typeParts[1] );
     }
     $this->schema[$column] = array( 'type' => $typeParts[0], 'param' => count($typeParts) > 1 ? $typeParts[1] : null );
   }
