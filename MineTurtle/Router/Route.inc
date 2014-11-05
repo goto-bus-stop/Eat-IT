@@ -12,7 +12,6 @@
  * @author  René Kooi <rene@kooi.me>
  */
 class Router_Route {
-
   /**
    * @param string          $name     Name for this route. Used for Reverse Routing.
    * @param string          $regex    Regular expression to match the URL. Group matches will
@@ -22,9 +21,11 @@ class Router_Route {
    *      Controller string "Controller#method", eg. "InventoryController#itemList", which will
    *      call "itemList" on a new instance of "InventoryController".
    */
-  public function __construct($name, $regex, $callback) {
+  public function __construct($name, $url, $callback) {
     $this->name = $name;
-    $this->regex = '/^' . str_replace('/', '\/', $regex) . '\/?$/i';
+    $this->url = $url;
+    // all these slashes </3
+    $this->regex = '/^' . preg_replace('/\\\\\[([a-z]+)\\\\\]/', '(.*?)', preg_quote($url, '/')) . '\/?$/i';
     $this->callback = $callback;
   }
 
@@ -42,6 +43,20 @@ class Router_Route {
       return $matches;
     }
     return false;
+  }
+
+  /**
+   * Returns the route URL for this route with the given parameters.
+   *
+   * @param array $matches Parameters to enter into the URL.
+   *
+   * @return string URL to this route.
+   */
+  public function getUrl($matches = array()) {
+    $i = 0;
+    return preg_replace_callback('/\[([a-z]+)\]/', function () use ($matches, &$i) {
+      return $matches[$i++];
+    }, $this->url);
   }
 
   /**

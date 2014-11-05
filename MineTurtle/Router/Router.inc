@@ -31,22 +31,23 @@ class Router {
    * @see Router_Route
    * @param string          $name     Route name. Optional.
    * @param string          $method   Method to match against. Eg. GET, POST.
-   * @param string          $regex    URL Regular expression. Group matches are passed to the callback.
+   * @param string          $url      URL expression. Add wildcards like "/user/[id]".
+   *     Matches are passed to the callback.
    * @param callable|string $callback Callback function, called if the route matches.
    *
    * @return this
    */
-  public function add($name, $method, $regex, $callback = null) {
+  public function add($name, $method, $url, $callback = null) {
     if (!$callback) {
       // $name is optional, so if there's no $callback, we default to a bogus name
       // and move the parameters around
-      list ($name, $method, $regex, $callback) = array(uniqid('name_'), $name, $method, $regex);
+      list ($name, $method, $url, $callback) = array(uniqid('name_'), $name, $method, $url);
     }
     $method = strtoupper($method);
     if (!isset($this->routes[$method])) {
       $this->routes[$method] = array();
     }
-    $this->routes[$method][] = new Router_Route($name, $regex, $callback);
+    $this->routes[$method][] = new Router_Route($name, $url, $callback);
     return $this;
   }
 
@@ -102,14 +103,35 @@ class Router {
     }
   }
 
-  public function redirect($name, $args = array()) {
-    foreach ($this->routes['GET'] as $route) {
+  /**
+   * Gets a URL to a route.
+   *
+   * @param string $method  Method name.
+   * @param string $name    Route name.
+   * @param array  $matches Route parameters.
+   *
+   * @return string|void Route URL.
+   */
+  public function link($method, $name, $matches = array()) {
+    foreach ($this->routes[$method] as $route) {
       if ($route->name === $name) {
-        header('Location: index.php/todo');
-        exit;
+        return 'index.php/' . $route->getUrl($matches);
       }
     }
     throw new \Exception('no matching route found');
+  }
+
+  /**
+   * Redirects to a route.
+   *
+   * @param string $name Route name.
+   * @param array  $args Route parameters.
+   *
+   * @return void
+   */
+  public function redirect($name, $args = array()) {
+    header('Location: ' . $this->link($name, $args));
+    exit;
   }
 
   /**
