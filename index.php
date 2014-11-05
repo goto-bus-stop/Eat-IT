@@ -26,4 +26,4 @@ $router->add('install', 'GET', '/install', function () {
 });
 
 // testing
-$router->dispatch(null, $_SERVER['PATH_INFO'] ?: '/');
+$router->dispatch(null, !empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/');
