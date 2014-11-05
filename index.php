@@ -2,9 +2,28 @@
 
 require 'include.inc';
 
+session_start();
+
 $router = Router::getInstance();
 
-$router->add('GET', '/', 'IndexController#get');
+$db = new PDOConnector('mysql:host=localhost;dbname=hanzecontact', 'root', '');
+Model::useDB($db);
+
+$router->add('index', 'GET', '/', 'IndexController#get');
+
+$router->add('install', 'GET', '/install', function () {
+  global $db;
+  $db->createTable('Artikel');
+  $db->createTable('ArtikelOrder');
+  $db->createTable('Ingredient');
+  $db->createTable('InkoopFactuur');
+  $db->createTable('InkoopOrder');
+  $db->createTable('Klant');
+  $db->createTable('Leverancier');
+  $db->createTable('Maaltijd');
+  $db->createTable('Order');
+  $db->createTable('OrderRegel');
+});
 
 // testing
-$router->dispatch('GET', '/');
+$router->dispatch(null, $_SERVER['PATH_INFO'] ?: '/');

@@ -102,6 +102,16 @@ class Router {
     }
   }
 
+  public function redirect($name, $args = array()) {
+    foreach ($this->routes['GET'] as $route) {
+      if ($route->name === $name) {
+        header('Location: index.php/todo');
+        exit;
+      }
+    }
+    throw new \Exception('no matching route found');
+  }
+
   /**
    * Returns the singleton Router instance.
    *
