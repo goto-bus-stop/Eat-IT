@@ -1,0 +1,11 @@
+<?php
+
+require __DIR__ . '/Database/DatabaseConnector.inc';
+require __DIR__ . '/Database/PDOConnector.inc';
+require __DIR__ . '/Database/CSVConnector.inc';
+require __DIR__ . '/Database/Schema.inc';
+require __DIR__ . '/Collection.inc';
+require __DIR__ . '/Model.inc';
+require __DIR__ . '/View.inc';
+require __DIR__ . '/Router/Router.inc';
+require __DIR__ . '/Router/Route.inc';

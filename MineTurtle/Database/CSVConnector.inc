@@ -1,0 +1,216 @@
+<?php
+/**
+ * @package MineTurtle
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+
+/**
+ * A CSV file based data store.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+class CSVConnector implements DatabaseConnector {
+
+  private $pdo;
+  private $queries;
+
+  /**
+   * CSVConnector Constructor.
+   *
+   * @param string $dsn      Data Source Name, see {@link http://php.net/pdo.construct}
+   * @param string $username Database user name.
+   * @param string $password Database password.
+   */
+  public function __construct($dir) {
+    if ($dir[strlen($dir) - 1] !== '/') {
+      $dir .= '/';
+    }
+    $this->directory = $dir;
+  }
+
+  /**
+   * Gets a file handle for the CSV containing the given Model type.
+   *
+   * @param string $Model The model name.
+   * @param bool   $write Whether the file handle should be writable.
+   *
+   * @return resource File handle.
+   */
+  private function file($Model, $write = false) {
+    $filename = $this->directory . $Model . '.csv';
+    if (!file_exists($filename)) {
+      file_put_contents($filename, '');
+    }
+    return fopen($filename, $write ? 'a+' : 'r');
+  }
+
+  /**
+   * Creates a model instance from an ordered array.
+   *
+   * @param string $Model The model class to instantiate.
+   * @param array  $csv   The ordered value data.
+   *
+   * @return Model
+   */
+  private function model($Model, $csv) {
+    $schema = array();
+    foreach ($Model::getSchema() as $column => $type) {
+      $schema[] = $column;
+    }
+    $data = array_combine($schema, array_values($csv));
+    return new $Model($data);
+  }
+
+  /**
+   * Finds a single record by primary key ID.
+   *
+   * @param string $Model Record type, aka. a Model subclass name.
+   * @param int    $id    Primary key ID.
+   *
+   * @return object|null Record Model instance.
+   */
+  public function findRecord($Model, $id) {
+    $file = $this->file($Model);
+    while ($csv = fgetcsv($file)) {
+      if ($csv[0] == $id) {
+        fclose($file);
+        return $this->model($Model, $csv);
+      }
+    }
+    fclose($file);
+  }
+
+  /**
+   * Finds records by primary key ID, or all records if no IDs are given.
+   *
+   * @param string $Model Record type, aka. a Model subclass name.
+   * @param int[]  $ids   Primary key IDs. Optional.
+   *
+   * @return Collection Collection of Model instances.
+   */
+  public function findRecords($Model, $ids = null) {
+    $file = $this->file($Model);
+    $records = new Collection();
+    if (is_null($ids)) {
+      while ($csv = fgetcsv($file)) {
+        $records[] = $this->model($Model, $csv);
+      }
+    }
+    else {
+      $l = count($ids);
+      $i = 0;
+      while ($csv = fgetcsv($file)) {
+        if (in_array($csv[0], $ids)) {
+          $i++;
+          $records[] = $this->model($Model, $csv);
+          if ($i >= $l) {
+            break;
+          }
+        }
+      }
+    }
+    fclose($file);
+    return $records;
+  }
+
+  /**
+   * Inserts a record into the database.
+   *
+   * @param string $Model Record type, aka. a Model subclass name.
+   * @param array  $data  Array containing data for this new record.
+   *
+   * @return int|bool The primary key ID assigned to the new record, or false on failure.
+   */
+  public function insertRecord($Model, $data) {
+    $file = $this->file($Model, true);
+
+    $id = 0;
+    rewind($file);
+    while ($csv = fgetcsv($file)) {
+      if ($csv[0] > $id) $id = $csv[0];
+    }
+
+    $csv = array( $id + 1 );
+    foreach ($Model::getSchema() as $column => $type) {
+      $csv[] = $data[$column];
+    }
+    fseek($file, 0, SEEK_END);
+    fputcsv($file, $csv);
+    fclose($file);
+    return $id + 1;
+  }
+
+  /**
+   * Updates a single record in the database.
+   *
+   * @param string $Model Record type, aka. a Model subclass name.
+   * @param int    $id    Primary key ID of the record to update.
+   * @param array  $data  Array containing data for this record.
+   *
+   * @return bool True if the update was carried out successfully, false otherwise.
+   */
+  public function updateRecord($Model, $id, $data) {
+    $file = $this->file($Model, true);
+    $record = false;
+    $start = 0;
+    $end = 0;
+    fseek($file, 0, SEEK_SET);
+    while ($csv = fgetcsv($file)) {
+      if ($csv[0] == $id) {
+        $record = $csv;
+        $end = ftell($file);
+        break;
+      }
+      $start = ftell($file);
+    }
+    if ($record) {
+      $append = '';
+      while ($line = fgets($file)) {
+        $append .= $line . "\n";
+      }
+      $record = array();
+      foreach ($Model::getSchema() as $column => $type) {
+        if (isset($data[$column])) {
+          $record[] = $data[$column];
+        }
+      }
+      ftruncate($file, $start);
+      fseek($file, 0, SEEK_END);
+      fputcsv($file, $record);
+      fwrite($file, $append);
+      fclose($file);
+      return true;
+    }
+    fclose($file);
+    return false;
+  }
+
+  /**
+   * Deletes a record from the database.
+   *
+   * @param string $Model Record type, aka. a Model subclass name.
+   * @param int    $id    Primary key ID of the record to delete.
+   *
+   * @return bool True if the delete succeeded, false otherwise.
+   */
+  public function deleteRecord($Model, $id) {
+    $schema = $Model::getSchema();
+    $sql = 'DELETE FROM ' . $Model::getTableName();
+
+    $sql .= ' WHERE `' . $schema->getPrimaryKey() . '` = :id';
+
+    return $this->execute($sql, array( 'id' => $id ));
+  }
+
+  /**
+   * Dumps all queries that were executed so far to the user.
+   *
+   * @return void
+   */
+  public function debugDumpQueries() {
+    var_dump($this->queries);
+  }
+
+}
