@@ -272,4 +272,16 @@ class Model {
     return self::$dbConn->findRecords($class, $ids);
   }
 
+  /**
+   * Finds a specific Model by a property. Returns only one, even if there would be many results.
+   *
+   * @param string $property Property to check.
+   * @param *      $value    Value to restrict to.
+   *
+   * @return Model|null The specified Model, or null if it does not exist.
+   */
+  public static function findBy($property, $value) {
+    $class = get_called_class();
+    return self::$dbConn->findRecordBy($class, $property, $value);
+  }
 }

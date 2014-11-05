@@ -108,19 +108,7 @@ class PDOConnector implements DatabaseConnector {
    * @return object|null Record Model instance.
    */
   public function findRecord($Model, $id) {
-    $schema = $Model::getSchema();
-    $select = array();
-    foreach ($schema as $column => $type) {
-      if ($type['type'] === 'link') {
-        $column .= 'ID AS ' . $column;
-      }
-      $select[] = $column;
-    }
-    $sql = 'SELECT ' . implode(', ', $select);
-    $sql .= ' FROM ' . $Model::getTableName();
-    $sql .= ' WHERE ' . $schema->getPrimaryKey() . ' = :id';
-
-    return $this->getOne($Model, $sql, array( 'id' => $id ));
+    return $this->findRecordBy($Model, $Model::getSchema()->getPrimaryKey(), $id);
   }
 
   /**
@@ -148,6 +136,39 @@ class PDOConnector implements DatabaseConnector {
     }
 
     return $this->getAll($Model, $sql, array());
+  }
+
+  /**
+   * Finds a single record by a property=value constraint.
+   *
+   * @param string $Model Record type, aka. a Model subclass name.
+   * @param int    $id    Primary key ID.
+   *
+   * @return object|null Record Model instance.
+   */
+  public function findRecordBy($Model, $property, $value) {
+    $schema = $Model::getSchema();
+    $select = array();
+    foreach ($schema as $column => $type) {
+      if ($type['type'] === 'link') {
+        $column .= 'ID AS ' . $column;
+      }
+      $select[] = $column;
+    }
+
+    $propType = $schema->getType($property);
+    if ($propType['type'] === 'link') {
+      $column = $property . 'ID';
+    }
+    else {
+      $column = $property;
+    }
+
+    $sql = 'SELECT ' . implode(', ', $select);
+    $sql .= ' FROM ' . $Model::getTableName();
+    $sql .= ' WHERE ' . $column . ' = :value';
+
+    return $this->getOne($Model, $sql, array( 'value' => $value ));
   }
 
   /**
@@ -234,6 +255,70 @@ class PDOConnector implements DatabaseConnector {
     $sql .= ' WHERE `' . $schema->getPrimaryKey() . '` = :id';
 
     return $this->execute($sql, array( 'id' => $id ));
+  }
+
+  /**
+   * Creates a database table for the given model.
+   *
+   * @param string $Model Model class.
+   *
+   * @return bool True if succeeded, false otherwise.
+   */
+  public function createTable($Model) {
+    $schema = $Model::getSchema();
+    $sql = 'CREATE TABLE `' . $Model::getTableName() . '` (' . "\n";
+    $inner = [];
+    $primary = null;
+    $columns = array();
+    foreach ($schema as $column => $type) {
+      switch ($type['type']) {
+        case 'id':
+          $primary = $column;
+          $columns[$column] = 'INT(11) auto_increment';
+          break;
+        case 'string':
+          $columns[$column] = 'VARCHAR(' . $type['param'] . ')';
+          break;
+        case 'double':
+          $columns[$column] = 'DOUBLE';
+          break;
+        case 'int':
+          $columns[$column] = 'INT(11)';
+          break;
+        case 'time':
+          $columns[$column] = 'TIME';
+          break;
+        case 'date':
+          $columns[$column] = 'DATE';
+          break;
+        case 'link':
+          $columns[$column . 'ID'] = 'INT(11)';
+          break;
+        default:
+          throw new \Exception('invalid schema');
+          break;
+      }
+    }
+    foreach ($columns as $column => $type) {
+      $inner[] = '  `' . $column . '` ' . $type;
+    }
+    if (!is_null($primary)) {
+      $inner[] = '  PRIMARY KEY (' . $primary . ')';
+    }
+    if ($links = $schema->getLinks()) {
+      foreach ($links as $link) {
+        $inner[] = '  KEY `' . $link . 'ID` (`' . $link . 'ID`)';
+      }
+      foreach ($links as $link) {
+        $Related = $schema->getRelatedModel($link);
+        $inner[] =
+          'CONSTRAINT `' . $link . '_fk` FOREIGN KEY (`' . $link . 'ID`) ' .
+          'REFERENCES `' . $Related::getTableName() . '` (`' . $Related::getSchema()->getPrimaryKey() . '`)';
+      }
+    }
+    $sql .= implode(',' . "\n", $inner) . "\n" . ') ENGINE=InnoDB;';
+    echo($sql);
+    return $sql;
   }
 
   /**
