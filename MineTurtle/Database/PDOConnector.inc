@@ -309,16 +309,17 @@ class PDOConnector implements DatabaseConnector {
       foreach ($links as $link) {
         $inner[] = '  KEY `' . $link . 'ID` (`' . $link . 'ID`)';
       }
-      foreach ($links as $link) {
-        $Related = $schema->getRelatedModel($link);
-        $inner[] =
-          'CONSTRAINT `' . $link . '_fk` FOREIGN KEY (`' . $link . 'ID`) ' .
-          'REFERENCES `' . $Related::getTableName() . '` (`' . $Related::getSchema()->getPrimaryKey() . '`)';
+      if (false /* set up constraints */) {
+        foreach ($links as $link) {
+          $Related = $schema->getRelatedModel($link);
+          $inner[] =
+            'CONSTRAINT `' . $Model::getTableName() . '_' . $link . '_fk` FOREIGN KEY (`' . $link . 'ID`) ' .
+            'REFERENCES `' . $Related::getTableName() . '` (`' . $Related::getSchema()->getPrimaryKey() . '`)';
+        }
       }
     }
     $sql .= implode(',' . "\n", $inner) . "\n" . ') ENGINE=InnoDB;';
-    echo($sql);
-    return $sql;
+    return $this->execute($sql);
   }
 
   /**
