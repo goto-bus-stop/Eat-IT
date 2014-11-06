@@ -115,7 +115,7 @@ class Router {
   public function link($method, $name, $matches = array()) {
     foreach ($this->routes[$method] as $route) {
       if ($route->name === $name) {
-        return 'index.php/' . $route->getUrl($matches);
+        return './' . ltrim($route->getUrl($matches), '/');
       }
     }
     throw new \Exception('no matching route found');

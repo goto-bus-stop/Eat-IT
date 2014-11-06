@@ -4,6 +4,8 @@ require 'MineTurtle/include.inc';
 
 require 'traits/AuthTrait.inc';
 
+require 'templates/helpers.inc';
+
 require 'models/EatITModel.inc';
 require 'models/Artikel.inc';
 require 'models/ArtikelOrder.inc';
