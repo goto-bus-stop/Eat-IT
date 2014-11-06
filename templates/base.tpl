@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Small Business - Start Bootstrap Template</title>
+    <title>{{title}}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/templates/css/bootstrap.min.css" rel="stylesheet">
@@ -67,7 +67,6 @@
 
 
          {{@raw content}}
- 
 
         <!-- Footer -->
         <footer>
