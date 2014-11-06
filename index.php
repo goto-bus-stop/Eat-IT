@@ -9,12 +9,13 @@ $router = Router::getInstance();
 $db = new PDOConnector('mysql:host=localhost;dbname=eatit', 'root', '');
 Model::useDB($db);
 
-$router->add('index', 'GET', '/', 'IndexController#get');
+$router->add('index',    'GET', '/', 'IndexController#get');
 
-$router->add('register', 'GET', '/register', 'LoginController#register');
-$router->add('POST', '/register', 'LoginController#doRegister');
+$router->add('register', 'GET',  '/register', 'LoginController#register');
+$router->add(            'POST', '/register', 'LoginController#doRegister');
 
-$router->add('order', 'GET', '/order/[klant_id]', 'OrderController#form');
+$router->add('order', 'GET',  '/order/[klant_id]', 'OrderController#form');
+$router->add(         'POST', '/order/[klant_id]', 'OrderController#placeOrder');
 
 $router->add('install', 'GET', '/install', function () {
   global $db;

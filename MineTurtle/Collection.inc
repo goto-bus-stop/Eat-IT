@@ -115,6 +115,24 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
   }
 
   /**
+   * Creates a new collection by filtering this one through a callback function.
+   *
+   * @param callable $cb Callback function. Gets the `($item, $index, $collection)` and
+   *      returns `true` to keep the item, `false` to leave it out.
+   *
+   * @return Collection A filtered collection.
+   */
+  public function filter($cb) {
+    $coll = array();
+    foreach ($this->items as $index => $item) {
+      if ($cb($item, $index, $this)) {
+        $coll[] = $item;
+      }
+    }
+    return new Collection($coll);
+  }
+
+  /**
    * Counts the number of items in this Collection.
    *
    * The preferred way of counting items in Collections is to use:

@@ -13,6 +13,7 @@ class Artikel extends EatITModel {
 
   protected static $schema = array(
     'artikelnr' => 'id',
+    'naam' => 'string:64',
     'leverancier' => 'link:Leverancier',
     'voorraad' => 'int',
     'gereserveerd' => 'int',
