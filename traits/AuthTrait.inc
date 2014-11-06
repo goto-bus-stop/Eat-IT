@@ -5,7 +5,7 @@ trait AuthTrait {
   public function getCurrentUser() {
     if (!property_exists($this, 'currentUser')) {
       $this->currentUser = null;
-      $uid = $_SESSION['uid'];
+      $uid = isset($_SESSION['uid']) ? $_SESSION['uid'] : false;
       if ($uid) {
         $this->currentUser = User::find($uid);
       }
