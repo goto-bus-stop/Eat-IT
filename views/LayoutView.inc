@@ -2,6 +2,6 @@
 
 class LayoutView extends View {
 
-  protected $template = 'templates/layout.tpl';
+  protected $template = 'templates/base.tpl';
 
 }

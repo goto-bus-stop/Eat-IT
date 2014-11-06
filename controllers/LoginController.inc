@@ -32,7 +32,7 @@ class LoginController extends EatITController {
   public function register() {
     $view = new RegisterView();
     $this->render(
-      $view->render()
+      $view->render("")
     );
   }
 
