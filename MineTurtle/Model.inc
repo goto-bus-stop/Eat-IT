@@ -76,7 +76,8 @@ class Model {
     $schema = static::getSchema();
 
     if ($prop === 'id') {
-      return $this->data[ $schema->getPrimaryKey() ];
+      $prop = $schema->getPrimaryKey();
+      return isset($this->data[$prop]) ? $this->data[$prop] : null;
     }
 
     if (!$schema->hasColumn($prop)) {

@@ -1,6 +1,7 @@
 <?php
 
 class LoginController extends EatITController {
+  use EmailTrait;
 
   protected $title = 'Login';
 
