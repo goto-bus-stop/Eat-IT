@@ -11,6 +11,10 @@ Model::useDB($db);
 
 $router->add('index', 'GET', '/', 'IndexController#get');
 
+$router->add('register', 'GET', '/register', 'LoginController#register');
+
+$router->add('order', 'GET', '/order/[klant_id]', 'OrderController#form');
+
 $router->add('install', 'GET', '/install', function () {
   global $db;
   $db->createTable('Artikel');
