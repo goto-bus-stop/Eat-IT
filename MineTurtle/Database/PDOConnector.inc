@@ -285,6 +285,9 @@ class PDOConnector implements DatabaseConnector {
         case 'int':
           $columns[$column] = 'INT(11)';
           break;
+        case 'bool':
+          $columns[$column] = 'TINYINT';
+          break;
         case 'time':
           $columns[$column] = 'TIME';
           break;

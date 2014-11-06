@@ -18,6 +18,7 @@ class Artikel extends EatITModel {
     'gereserveerd' => 'int',
     'besteld' => 'int',
     'prijs' => 'double',
+    'verkoop' => 'bool'
   );
 
 }

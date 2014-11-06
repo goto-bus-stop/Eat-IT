@@ -20,11 +20,23 @@ class Schema implements \IteratorAggregate {
   /**
    * Defines a column type on this Schema.
    *
+   * A type looks like "type:parameter", where "parameter" is optional.
+   * eg. "string:16" for a string with max length 16, or "int" for an integer. There is a special type
+   * "link" that takes a Model name as a parameter, eg. "link:Employee", which refers to a Model that
+   * is stored elsewhere.
+   *
+   * Available data types:
+   * "id"     A unique ID. Picked by the Database implementation.
+   * "string" A text string. The parameter is the max length of the string.
+   * "int"    An integer.
+   * "double" A double.
+   * "bool"   A boolean. True or false.
+   * "date"   A date. YYYY-MM-DD style.
+   * "time"   A time. hh:mm:ss style.
+   * "link"   A link to a table. Parameter is the Model class name of the link endpoint.
+   *
    * @param string $column Column or property name.
-   * @param string $type   Its Type. This looks like "type:parameter", where "parameter" is optional.
-   *     eg. "string:16" for a string with max length 16, or "int" for an integer. There is a special type
-   *     "link" that takes a Model name as a parameter, eg. "link:Employee", which refers to a Model that
-   *     is stored elsewhere.
+   * @param string $type   Its Type
    *
    * @return void
    */
