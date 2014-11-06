@@ -9,7 +9,7 @@
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class ArtikelOrder extends Model {
+class ArtikelOrder extends EatITModel {
 
   protected static $schema = array(
     'artikelordernr' => 'id',

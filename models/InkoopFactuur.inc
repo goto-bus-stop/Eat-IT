@@ -9,7 +9,7 @@
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class InkoopFactuur extends Model {
+class InkoopFactuur extends EatITModel {
 
   protected static $schema = array(
     'factuurnr' => 'id',

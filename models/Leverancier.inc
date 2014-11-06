@@ -9,7 +9,7 @@
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class Leverancier extends Model {
+class Leverancier extends EatITModel {
 
   protected static $schema = array(
     'leveranciernr' => 'id',

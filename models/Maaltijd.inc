@@ -9,7 +9,7 @@
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class Maaltijd extends Model {
+class Maaltijd extends EatITModel {
 
   protected static $schema = array(
     'maaltijdnr' => 'id',

@@ -9,7 +9,7 @@
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class Ingredient extends Model {
+class Ingredient extends EatITModel {
 
   protected static $schema = array(
     'ingedientnr' => 'id',
