@@ -29,3 +29,4 @@ require 'views/LayoutView.inc';
 require 'views/LoginView.inc';
 require 'views/RegisterView.inc';
 require 'views/IndexView.inc';
+require 'views/OrderFormView.inc';

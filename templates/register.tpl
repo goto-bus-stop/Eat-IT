@@ -13,15 +13,15 @@
     <form method="post" action="{{@link register}}" role="form">
       <div class="form-group">
         <label for="naam">Naam</label>
-        <input type="text" class="form-control" id="naam" placeholder="Mine Turtle">
+        <input type="text" class="form-control" id="naam" name="naam" placeholder="Mine Turtle">
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="mineturtle@explosion.boom">
+        <input type="email" class="form-control" id="email" name="email" placeholder="mineturtle@explosion.boom">
       </div>
       <div class="form-group">
         <label for="telefoon">Telefoon</label>
-        <input class="form-control" type="text" id="telefoon">
+        <input class="form-control" type="text" id="telefoon" name="telefoon">
       </div>
       <div class="form-group">
         <label for="adres">Adres</label>
