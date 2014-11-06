@@ -12,6 +12,7 @@ Model::useDB($db);
 $router->add('index', 'GET', '/', 'IndexController#get');
 
 $router->add('register', 'GET', '/register', 'LoginController#register');
+$router->add('POST', '/register', 'LoginController#doRegister');
 
 $router->add('order', 'GET', '/order/[klant_id]', 'OrderController#form');
 
