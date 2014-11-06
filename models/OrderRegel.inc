@@ -13,7 +13,7 @@ class OrderRegel extends EatITModel {
 
   protected static $schema = array(
     'orderregelnr' => 'id',
-    'ordernr' => 'link:Order',
+    'order' => 'link:Order',
     'type' => 'string:10',
     'artikel' => 'link:Artikel',
     'maaltijd' => 'link:Maaltijd',
