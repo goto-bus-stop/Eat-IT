@@ -25,7 +25,7 @@ class Router_Route {
     $this->name = $name;
     $this->url = $url;
     // all these slashes </3
-    $this->regex = '/^' . preg_replace('/\\\\\[([a-z]+)\\\\\]/', '(.*?)', preg_quote($url, '/')) . '\/?$/i';
+    $this->regex = '/^' . preg_replace('/\\\\\[([a-z_]+)\\\\\]/', '(.*?)', preg_quote($url, '/')) . '\/?$/i';
     $this->callback = $callback;
   }
 
@@ -54,7 +54,7 @@ class Router_Route {
    */
   public function getUrl($matches = array()) {
     $i = 0;
-    return preg_replace_callback('/\[([a-z]+)\]/', function () use ($matches, &$i) {
+    return preg_replace_callback('/\[([a-z_]+)\]/', function () use ($matches, &$i) {
       return $matches[$i++];
     }, $this->url);
   }
