@@ -132,7 +132,7 @@ class PDOConnector implements Connector {
       $select[] = $column;
     }
     $sql = 'SELECT ' . implode(', ', $select);
-    $sql .= ' FROM ' . $Model::getTableName();
+    $sql .= ' FROM `' . $Model::getTableName() . '`';
     if (is_array($ids)) {
       $inIds = array_map(array( &$this, 'escape' ), $ids);
       $sql .= ' WHERE ' . $schema->getPrimaryKey() . ' IN(' . implode(', ', $inIds) . ')';
@@ -168,7 +168,7 @@ class PDOConnector implements Connector {
     }
 
     $sql = 'SELECT ' . implode(', ', $select);
-    $sql .= ' FROM ' . $Model::getTableName();
+    $sql .= ' FROM `' . $Model::getTableName() . '`';
     $sql .= ' WHERE ' . $column . ' = :value';
 
     return $this->getOne($Model, $sql, array( 'value' => $value ));
@@ -222,7 +222,7 @@ class PDOConnector implements Connector {
    */
   public function updateRecord($Model, $id, $data) {
     $schema = $Model::getSchema();
-    $sql = 'UPDATE ' . $Model::getTableName();
+    $sql = 'UPDATE `' . $Model::getTableName() . '`';
 
     $update = array();
     foreach ($schema as $column => $type) {
@@ -253,7 +253,7 @@ class PDOConnector implements Connector {
    */
   public function deleteRecord($Model, $id) {
     $schema = $Model::getSchema();
-    $sql = 'DELETE FROM ' . $Model::getTableName();
+    $sql = 'DELETE FROM `' . $Model::getTableName() . '`';
 
     $sql .= ' WHERE `' . $schema->getPrimaryKey() . '` = :id';
 
@@ -325,7 +325,7 @@ class PDOConnector implements Connector {
       }
     }
     $sql .= implode(',' . "\n", $inner) . "\n" . ') ENGINE=InnoDB;';
-    return $this->execute($sql);
+    return $this->execute($sql, array());
   }
 
   /**
