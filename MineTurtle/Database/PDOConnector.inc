@@ -127,7 +127,7 @@ class PDOConnector implements Connector {
     $select = array();
     foreach ($schema as $column => $type) {
       if ($type['type'] === 'link') {
-        $column .= 'ID AS ' . $column;
+        $column .= 'ID AS `' . $column . '`';
       }
       $select[] = $column;
     }
@@ -154,7 +154,7 @@ class PDOConnector implements Connector {
     $select = array();
     foreach ($schema as $column => $type) {
       if ($type['type'] === 'link') {
-        $column .= 'ID AS ' . $column;
+        $column .= 'ID AS `' . $column . '`';
       }
       $select[] = $column;
     }
