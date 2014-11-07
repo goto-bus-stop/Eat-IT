@@ -5,7 +5,7 @@ class OrderController extends EatITController {
   public function form() {
     $artikel = Artikel::all()->filter(function ($a) { return $a->verkoop != 0; });
     $of = new OrderFormView();
-    $suggestion = date('H:i:s',
+    $suggestion = date('H:i',
                        // find the closest half hour at least 25 minutes from now
                        ceil(strtotime('+25 minutes') / 60 / 30) * 60 * 30);
     $this->render($of->render(array(
@@ -41,6 +41,8 @@ class OrderController extends EatITController {
       }
       $orderLines->save();
     }
+    $opv = new OrderPlacedView();
+    $this ->render($opv->render(/*Data*/""));
   }
 
 }
