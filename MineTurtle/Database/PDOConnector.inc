@@ -185,10 +185,10 @@ class PDOConnector implements DatabaseConnector {
 
     $columns = array();
     foreach ($schema as $column => $type) {
-      if ($type['type'] === 'link') {
-        $column .= 'ID';
-      }
       if (array_key_exists($column, $data)) {
+        if ($type['type'] === 'link') {
+          $column .= 'ID';
+        }
         $columns[] = '`' . $column . '`';
       }
     }
