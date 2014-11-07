@@ -1,0 +1,1 @@
+<div class="alert alert-success" role="alert">Bedankt voor je bestelling. Je bestelling wordt op de aangegeven tijd bezorgd.</div>
