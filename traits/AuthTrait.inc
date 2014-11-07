@@ -1,5 +1,14 @@
 <?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 
+/**
+ * Adds login related functionality.
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 trait AuthTrait {
 
   public function getCurrentUser() {

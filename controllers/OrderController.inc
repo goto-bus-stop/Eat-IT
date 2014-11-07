@@ -25,7 +25,7 @@ class OrderController extends EatITController {
       ));
       $order->save();
 
-      $orderLines = new Collection();
+      $orderLines = new MineTurtle\Collection();
       foreach ($lines as $line) {
         if ($line[0] === 'a') {
           $type = 'artikel';

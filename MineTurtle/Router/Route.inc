@@ -5,13 +5,15 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle\Router;
+
 /**
  * Represents a Route, matching a URL regex to a callback function / Controller method.
  *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class Router_Route {
+class Route {
   /**
    * @param string          $name     Name for this route. Used for Reverse Routing.
    * @param string          $regex    Regular expression to match the URL. Group matches will

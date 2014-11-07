@@ -5,13 +5,16 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle\Database;
+use MineTurtle\Collection;
+
 /**
  * A PDO Database connection. (MySQL, MariaDB, Postgres…)
  *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class PDOConnector implements DatabaseConnector {
+class PDOConnector implements Connector {
 
   private $pdo;
   private $queries;

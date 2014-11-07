@@ -39,7 +39,7 @@
     if (button.getAttribute('data-js') === 'add-row') {
       var group = button
       do { group = group.parentNode } while (button.parentNode !== window &&
-                                              group.className !== 'form-group')
+                                             group.className !== 'form-group')
       // lol cloning </3
       var div = group.cloneNode()
       div.innerHTML = group.innerHTML

@@ -5,6 +5,8 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle;
+
 /**
  * The Template class translates our custom MineTemplate syntax to PHP.
  * To display values in MineTemplates, you use `{{key}}`. If you need to go down a path
@@ -72,14 +74,14 @@ class Template {
     $this->eval = preg_replace_callback('/\{\{@([a-z0-9_\.]+)( .*?)?\}\}/i', function ($match) {
       $helper = $match[1];
       $args = $match[2];
-      return '<?php echo Template::callHelper("' . addslashes($helper) . '", "' . addslashes(trim($args)) . '", $data); ?>';
+      return '<?php echo MineTurtle\Template::callHelper("' . addslashes($helper) . '", "' . addslashes(trim($args)) . '", $data); ?>';
     }, $this->eval);
 
     // block helpers
     $this->eval = preg_replace_callback('/\{\{#([a-z0-9_\.]+)( .*?)?\}\}/i', function ($match) {
       $helper = $match[1];
       $args = $match[2];
-      return '<?php Template::callHelper("' . addslashes($helper) . '", "' . addslashes(trim($args)) . '", $data, function ($data) { ?>';
+      return '<?php MineTurtle\Template::callHelper("' . addslashes($helper) . '", "' . addslashes(trim($args)) . '", $data, function ($data) { ?>';
     }, $this->eval);
     $this->eval = preg_replace_callback('/\{\{\/([a-z0-9_\.]+)\}\}/i', function ($match) {
       return '<?php }) ?>';

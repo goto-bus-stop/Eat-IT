@@ -5,6 +5,8 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle;
+
 /**
  * A Collection represents a bunch of "things" in the database.
  *
