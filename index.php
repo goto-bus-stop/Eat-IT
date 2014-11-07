@@ -4,10 +4,10 @@ require 'include.inc';
 
 session_start();
 
-$router = Router::getInstance();
+$router = MineTurtle\Router\Router::getInstance();
 
-$db = new PDOConnector('mysql:host=localhost;dbname=eatit', 'root', '');
-Model::useDB($db);
+$db = new MineTurtle\Database\PDOConnector('mysql:host=localhost;dbname=eatit', 'root', '');
+MineTurtle\Model::useDB($db);
 
 $router->add('index',    'GET', '/', 'IndexController#get');
 

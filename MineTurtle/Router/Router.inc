@@ -5,6 +5,8 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle\Router;
+
 /**
  * The Router maps URLs to Controllers.
  *
@@ -47,7 +49,7 @@ class Router {
     if (!isset($this->routes[$method])) {
       $this->routes[$method] = array();
     }
-    $this->routes[$method][] = new Router_Route($name, $url, $callback);
+    $this->routes[$method][] = new Route($name, $url, $callback);
     return $this;
   }
 
@@ -59,7 +61,7 @@ class Router {
    * @return this
    */
   public function error($callback) {
-    $this->error = new Router_Route('error', '', $callback);
+    $this->error = new Route('error', '', $callback);
     return $this;
   }
 

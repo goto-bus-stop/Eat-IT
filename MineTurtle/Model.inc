@@ -5,6 +5,10 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle;
+use MineTurtle\Database\Schema;
+use MineTurtle\Database\Connector;
+
 /**
  * A Model represents a "thing" in the database, and provides
  * methods to read and write "things".
@@ -216,7 +220,7 @@ class Model {
    * @static
    * @return void
    */
-  public static function useDB(DatabaseConnector $db) {
+  public static function useDB(Connector $db) {
     self::$dbConn = $db;
   }
 

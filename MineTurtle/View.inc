@@ -5,6 +5,8 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle;
+
 /**
  * A View renders something to the browser.
  *

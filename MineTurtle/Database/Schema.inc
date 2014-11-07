@@ -5,6 +5,8 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle\Database;
+
 /**
  * Describes what kind of information a Model contains.
  *

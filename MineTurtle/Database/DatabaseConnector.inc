@@ -1,6 +1,8 @@
 <?php
 
-interface DatabaseConnector {
+namespace MineTurtle\Database;
+
+interface Connector {
 
   public function findRecord($Model, $id);
   public function findRecords($Model, $ids = null);

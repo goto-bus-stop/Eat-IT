@@ -19,7 +19,7 @@ class LoginController extends EatITController {
     if ($user && password_verify($pass, $user->password)) {
       $_SESSION['uid'] = $user->id;
       $_SESSION['pass'] = $pass;
-      Router::getInstance()->redirect('index');
+      MineTurtle\Router\Router::getInstance()->redirect('index');
     }
     else {
       $errors = array( 'Email/wachtwoord-combinatie niet bekend' );
@@ -43,7 +43,7 @@ class LoginController extends EatITController {
       $client->$prop = $_POST[$prop];
     }
     $client->save();
-    $link = Router::getInstance()->link('GET', 'order', array( $client->id ));
+    $link = MineTurtle\Router\Router::getInstance()->link('GET', 'order', array( $client->id ));
     $this->sendEmail($client->email,
                      'Bestelling Eat-IT',
                      'Gebruik de volgende link om je bestelling te plaatsen: <a href="' . $link . '">' . $link . '</a>');

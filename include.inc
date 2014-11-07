@@ -1,5 +1,9 @@
 <?php
 
+// Set to true to generate simple template View classes on the fly
+// when trying to instantiate a nonexistent View.
+const USE_VIEW_GENERATOR = false;
+
 require 'MineTurtle/include.inc';
 
 require 'traits/AuthTrait.inc';
@@ -26,8 +30,13 @@ require 'controllers/LoginController.inc';
 require 'controllers/OrderController.inc';
 
 require 'views/LayoutView.inc';
-require 'views/LoginView.inc';
-require 'views/RegisterView.inc';
-require 'views/IndexView.inc';
-require 'views/OrderFormView.inc';
-require 'views/OrderPlacedView.inc';
+if (USE_VIEW_GENERATOR) {
+  require 'views/ViewGenerator.inc';
+}
+else {
+  require 'views/LoginView.inc';
+  require 'views/RegisterView.inc';
+  require 'views/IndexView.inc';
+  require 'views/OrderFormView.inc';
+  require 'views/OrderPlacedView.inc';
+}
