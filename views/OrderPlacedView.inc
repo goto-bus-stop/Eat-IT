@@ -1,6 +1,6 @@
 <?php
 
-class OrderPlacedView extends View {
+class OrderPlacedView extends MineTurtle\View {
 
   protected $template = 'templates/orderplaced.tpl';
 
