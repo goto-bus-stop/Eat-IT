@@ -160,10 +160,10 @@ class Template {
     $path = explode('.', $path);
     foreach ($path as $sub) {
       if (is_array($data)) {
-        $data = $data[$sub];
+        $data = isset($data[$sub]) ? $data[$sub] : '';
       }
       else {
-        $data = $data->$sub;
+        $data = isset($data->$sub) ? $data->$sub : '';
       }
     }
     return $data;
