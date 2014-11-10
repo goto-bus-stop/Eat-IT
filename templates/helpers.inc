@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @link helper
+ * The @link helper.
  */
 MineTurtle\Template::addHelper('link', function ($args, $data) {
   $args = explode(' ', $args);

@@ -28,6 +28,7 @@ require 'controllers/EatITController.inc';
 require 'controllers/IndexController.inc';
 require 'controllers/LoginController.inc';
 require 'controllers/OrderController.inc';
+require 'controllers/MaaltijdController.inc';
 
 require 'views/LayoutView.inc';
 if (USE_VIEW_GENERATOR) {
@@ -39,4 +40,5 @@ else {
   require 'views/IndexView.inc';
   require 'views/OrderFormView.inc';
   require 'views/OrderPlacedView.inc';
+  require 'views/TableView.inc';
 }

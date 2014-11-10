@@ -142,14 +142,14 @@ class PDOConnector implements Connector {
   }
 
   /**
-   * Finds a single record by a property=value constraint.
+   * Builds a SQL SELECT statement for querying a Model by a given property.
    *
-   * @param string $Model Record type, aka. a Model subclass name.
-   * @param int    $id    Primary key ID.
+   * @param string $Model    Record type, aka. a Model subclass name.
+   * @param int    $property Property to search for.
    *
-   * @return object|null Record Model instance.
+   * @return string A prepare-ready SQL query with a :value parameter.
    */
-  public function findRecordBy($Model, $property, $value) {
+  private function sqlSelectBy($Model, $property) {
     $schema = $Model::getSchema();
     $select = array();
     foreach ($schema as $column => $type) {
@@ -171,7 +171,35 @@ class PDOConnector implements Connector {
     $sql .= ' FROM `' . $Model::getTableName() . '`';
     $sql .= ' WHERE ' . $column . ' = :value';
 
-    return $this->getOne($Model, $sql, array( 'value' => $value ));
+    return $sql;
+  }
+
+  /**
+   * Finds a single record by a property=value constraint.
+   *
+   * @param string $Model    Record type, aka. a Model subclass name.
+   * @param int    $property Property to search for.
+   * @param *      $value    Value the property should have.
+   *
+   * @return Collection Collection of Record Model instances.
+   */
+  public function findRecordsBy($Model, $property, $value) {
+    $sql = $this->sqlSelectBy($Model, $property);
+    return $this->getAll($Model, $sql, array( 'value' => $value ));
+  }
+
+  /**
+   * Finds a single record by a property=value constraint.
+   *
+   * @param string $Model    Record type, aka. a Model subclass name.
+   * @param int    $property Property to search for.
+   * @param *      $value    Value the property should have.
+   *
+   * @return object|null Record Model instance.
+   */
+  public function findRecordBy($Model, $property, $value) {
+    $sql = $this->sqlSelectBy($Model, $property);
+    return $this->getOne($Model, $sql . ' LIMIT 1', array( 'value' => $value ));
   }
 
   /**

@@ -4,13 +4,44 @@ namespace MineTurtle\Database;
 
 interface Connector {
 
+  /**
+   * Finds a single Model by its primary key ID.
+   */
   public function findRecord($Model, $id);
+
+  /**
+   * Finds Models by their primary key IDs, or all Models if none are given.
+   */
   public function findRecords($Model, $ids = null);
+
+  /**
+   * Finds a single Model by a given property.
+   */
   public function findRecordBy($Model, $property, $value);
+  
+  /**
+   * Finds all Models by a given property=value combination.
+   */
+  public function findRecordsBy($Model, $property, $value);
+
+  /**
+   * Inserts a new Model into the database.
+   */
   public function insertRecord($Model, $data);
+
+  /**
+   * Updates a Model in the database.
+   */
   public function updateRecord($Model, $id, $data);
+
+  /**
+   * Removes a Model from the database.
+   */
   public function deleteRecord($Model, $id);
 
+  /**
+   * Creates a new table in the database.
+   */
   public function createTable($Model);
 
 }

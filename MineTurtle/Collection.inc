@@ -135,6 +135,22 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable {
   }
 
   /**
+   * Creates a new collection by applying a function to each item in this collection.
+   *
+   * @param callable $cb Callback function. Gets the `($item, $index, $collection)` and
+   *      returns an item for the new collection.
+   *
+   * @return Collection The new collection.
+   */
+  public function map($cb) {
+    $coll = array();
+    foreach ($this->items as $index => $item) {
+      $coll[] = $cb($item, $index, $this);
+    }
+    return new Collection($coll);
+  }
+
+  /**
    * Counts the number of items in this Collection.
    *
    * The preferred way of counting items in Collections is to use:

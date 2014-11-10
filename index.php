@@ -17,6 +17,10 @@ $router->add(            'POST', '/register', 'LoginController#doRegister');
 $router->add('order', 'GET',  '/order/[klant_id]', 'OrderController#form');
 $router->add(         'POST', '/order/[klant_id]', 'OrderController#placeOrder');
 
+$router->add(                      'GET', '/maaltijden',                         'MaaltijdController#get');
+$router->add('maaltijd',           'GET', '/maaltijden/[maaltijd_id]',           'MaaltijdController#show');
+$router->add('maaltijd_bestellen', 'GET', '/maaltijden/[maaltijd_id]/bestellen', 'MaaltijdController#bestelling');
+
 $router->add('install', 'GET', '/install', function () {
   global $db;
   $db->createTable('Artikel');

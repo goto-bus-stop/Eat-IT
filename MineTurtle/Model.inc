@@ -58,7 +58,7 @@ class Model {
         $this->resolveLink($prop, $value);
         $value = $value->id;
       }
-      $prop .= 'ID';
+      //$prop .= 'ID';
     }
 
     $this->data[$prop] = $value;
@@ -249,8 +249,17 @@ class Model {
   public static function all() {
     $class = get_called_class();
     return self::$dbConn->findRecords($class);
-    $schema = static::getSchema();
-    return self::$dbConn->getAll($schema->getSelectSql($class), array(), $class);
+  }
+
+  /**
+   * Returns a Collection of all available Models of this type.
+   *
+   * @static
+   * @return Collection All the available Models.
+   */
+  public static function allBy($prop, $value) {
+    $class = get_called_class();
+    return self::$dbConn->findRecordsBy($class, $prop, $value);
   }
 
   /**
