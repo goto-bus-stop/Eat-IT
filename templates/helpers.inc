@@ -6,5 +6,9 @@
 MineTurtle\Template::addHelper('link', function ($args, $data) {
   $args = explode(' ', $args);
   $route = array_shift($args);
+  $args = array_map(function ($v) use ($data) {
+    if (is_numeric($v)) return $v;
+    return MineTurtle\Template::getProperty($data, $v);
+  }, $args);
   return MineTurtle\Router\Router::getInstance()->link('GET', $route, $args);
 });
