@@ -103,6 +103,18 @@ class Model {
   }
 
   /**
+   * Checks if a property exists according to the schema.
+   *
+   * @param string $prop The property name.
+   *
+   * @return bool True if the property exists, false otherwise.
+   */
+  public function __isset($prop) {
+    $schema = static::getSchema();
+    return $schema->hasColumn($prop) || $prop === 'id';
+  }
+
+  /**
    * Finds the ID of the Model that is referenced by the given property.
    *
    * @param string $link The name of the linking property.
