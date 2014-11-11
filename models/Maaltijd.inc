@@ -16,6 +16,8 @@ class Maaltijd extends EatITModel {
     'naam' => 'string:64',
     'prijs' => 'double',
     'beschikbaar' => 'int',
+    'daghap' => 'bool',
+    'img' => 'string:128',
   );
 
 }
