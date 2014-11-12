@@ -5,7 +5,13 @@
  */
 
 /**
- * TODO: write docs
+ * Represents an order to an upstream vendor.
+ *
+ * @property int         $id          Primary key ID of this order.
+ * @property Leverancier $leverancier Vendor.
+ * @property string      $datum       Date when this order was sent off.
+ * @property string      $status      Current status of this order: sent, acknowledged, completed, etc.
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
@@ -13,7 +19,7 @@ class InkoopOrder extends EatITModel {
 
   protected static $schema = array(
     'ordernr' => 'id',
-    'leveranciernr' => 'link:Leverancier',
+    'leverancier' => 'link:Leverancier',
     'datum' => 'date',
     'status' => 'string:20',
   );

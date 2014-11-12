@@ -5,7 +5,15 @@
  */
 
 /**
- * TODO: write docs
+ * Represents a vendor.
+ *
+ * @property int    $id       Primary key ID of this vendor.
+ * @property string $naam     Vendor name.
+ * @property string $adres    Vendor office address.
+ * @property string $postcode Vendor's zip/postal code.
+ * @property string $plaats   Vendor's city of residence.
+ * @property string $telefoon Vendor's sales number.
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */

@@ -5,7 +5,14 @@
  */
 
 /**
- * TODO: write docs
+ * Represents a part of order by an Eat-IT customer.
+ *
+ * @property int           $id       Primary key ID of this order.
+ * @property Order         $order    Order that this part belongs to.
+ * @property string        $type     Type of product that is being ordered (artikel/maaltijd).
+ * @property Artikel|null  $artikel  Item that's being ordered.
+ * @property Maaltijd|null $maaltijd Meal that's being ordered.
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */

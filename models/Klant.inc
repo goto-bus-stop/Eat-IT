@@ -5,7 +5,16 @@
  */
 
 /**
- * TODO: write docs
+ * Represents a customer.
+ *
+ * @property int    $id       Primary key ID of this customer.
+ * @property string $naam     Customer name.
+ * @property string $adres    Customer street address.
+ * @property string $postcode ZIP/postal code of this customer.
+ * @property string $plaats   Customer's city of residence.
+ * @property string $telefoon Customer's telephone number.
+ * @property string $email    Customer's email address.
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
