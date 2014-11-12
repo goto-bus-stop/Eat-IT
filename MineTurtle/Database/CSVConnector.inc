@@ -5,13 +5,16 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle\Database;
+use MineTurtle\Collection;
+
 /**
- * A CSV file based data store.
+ * A CSV file based data store. Does NOT work!!!
  *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class CSVConnector implements DatabaseConnector {
+class CSVConnector implements Connector {
 
   private $pdo;
   private $queries;
