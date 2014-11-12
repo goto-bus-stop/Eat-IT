@@ -1,0 +1,48 @@
+<?php
+require 'include.inc';
+
+//$r = new MineTurtle\Router\Route('test', '/x/[test]', function(){});
+//echo $r->geturl(array(1))."<br>\n";
+//$r = new MineTurtle\Router\Route('test', '/x/[test]/y', function(){});
+//echo $r->geturl(array(1));
+//exit;
+
+$r = MineTurtle\Router\Router::getInstance();
+$r->add('test', 'GET', '/x/[t]/y', function () { });
+$t = new MineTurtle\Template('{{@link test lol.asd}}');
+$x = (object)['asd'=>'testara'];
+echo $t->render(['lol'=>$x]);
+
+exit;
+
+
+//var_dump(
+//  $a = propSrc('$data', '$path0'),
+//  $b = propSrc($a, '$path1'),
+//  propSrc($b, '$path3')
+//);
+
+$router = Router::getInstance();
+
+$router->add('GET', '/', 'IndexController#get');
+
+$router->dispatch('GET', '/');
+
+//$list = new ListView();
+//echo $list->render(array( 'items' => array(
+//  'test', '<b>hello', 'world'
+//)));
+//exit;
+//$t = new Template('
+//  {{#each item in items}}
+//    <div>{{item.test.subkey.hello}}</div>
+//  {{/each}}
+//');
+//class T { public $hello; public function __construct($h) { $this->hello = $h; } }
+//$data = array(
+//  'items' => array(
+//    array('test' => [ 'subkey' => new T('hello') ]),
+//    array('test' => [ 'subkey' => new T('world') ])
+//  )
+//);
+//echo $t($data);

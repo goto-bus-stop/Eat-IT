@@ -1,0 +1,59 @@
+<?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+
+/**
+ * Lists meals.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+class MaaltijdController extends EatITController {
+
+  /**
+   * Renders a list of available meals.
+   *
+   * @return void
+   */
+  public function get() {
+    $table = new TableView();
+    $maaltijd = Maaltijd::all();
+    $this->render(
+      $table->render(array(
+        'headings' => explode('|', 'Naam|Prijs|Beschikbaarheid|'),
+        'table' => $maaltijd
+          ->map(function ($m) {
+            $r = MineTurtle\Router\Router::getInstance();
+            $actions =
+              '<a href="' . $r->link('GET', 'maaltijd', $m->id) . '" class="btn btn-default btn-xs">Details</a>' .
+              '<a href="' . $r->link('GET', 'maaltijd_bestellen', $m->id) . '" class="btn btn-primary btn-xs">Bestellen</a>';
+            return array( $m->naam,
+                          '&euro;' . str_replace(',00', ',&ndash;', number_format($m->prijs, 2, ',', '.')),
+                          $m->beschikbaar,
+                          $actions );
+          })
+      ))
+    );
+  }
+
+  public function show($id) {
+    $ingrView = new TableView();
+    
+    $maaltijd = Maaltijd::find($id);
+    $ingr = Ingredient::allBy('maaltijd', $id);
+    $ingr->load('artikel');
+    $this->render(
+      '<h1>' . $maaltijd->naam . '</h1>' .
+      $ingrView->render(array(
+        'headings' => explode('|', 'Artikel|Hoeveelheid'),
+        'table' => $ingr->map(function ($i) {
+          return array( '#' . $i->artikel->id . ' ' . $i->artikel->naam, $i->hoeveelheid );
+        })
+      ))
+    );
+  }
+
+}
+

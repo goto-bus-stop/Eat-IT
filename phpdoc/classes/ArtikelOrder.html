@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/MineTurtle.html">\MineTurtle</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">116</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-426760694"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-426760694" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-932720057"></a>
+                                <a href="../namespaces/MineTurtle.html" style="margin-left: 30px; padding-left: 0">MineTurtle</a>
+            </div>
+            <div id="namespace-932720057" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-564837455"></a>
+                                <a href="../namespaces/MineTurtle.Database.html" style="margin-left: 30px; padding-left: 0">Database</a>
+            </div>
+            <div id="namespace-564837455" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/MineTurtle.Database.Connector.html">Connector</a></li>
+                                                                                                    <li class="class"><a href="../classes/MineTurtle.Database.CSVConnector.html">CSVConnector</a></li>
+                                                    <li class="class"><a href="../classes/MineTurtle.Database.PDOConnector.html">PDOConnector</a></li>
+                                                    <li class="class"><a href="../classes/MineTurtle.Database.Schema.html">Schema</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1539330957"></a>
+                                <a href="../namespaces/MineTurtle.Router.html" style="margin-left: 30px; padding-left: 0">Router</a>
+            </div>
+            <div id="namespace-1539330957" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/MineTurtle.Router.Route.html">Route</a></li>
+                                                    <li class="class"><a href="../classes/MineTurtle.Router.Router.html">Router</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/MineTurtle.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/MineTurtle.Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/MineTurtle.Template.html">Template</a></li>
+                                                    <li class="class"><a href="../classes/MineTurtle.View.html">View</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/AuthTrait.html">AuthTrait</a></li>
+                                                    <li class="trait"><a href="../classes/EmailTrait.html">EmailTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Artikel.html">Artikel</a></li>
+                                                    <li class="class"><a href="../classes/ArtikelOrder.html">ArtikelOrder</a></li>
+                                                    <li class="class"><a href="../classes/EatITController.html">EatITController</a></li>
+                                                    <li class="class"><a href="../classes/EatITModel.html">EatITModel</a></li>
+                                                    <li class="class"><a href="../classes/IndexController.html">IndexController</a></li>
+                                                    <li class="class"><a href="../classes/IndexView.html">IndexView</a></li>
+                                                    <li class="class"><a href="../classes/Ingredient.html">Ingredient</a></li>
+                                                    <li class="class"><a href="../classes/InkoopFactuur.html">InkoopFactuur</a></li>
+                                                    <li class="class"><a href="../classes/InkoopOrder.html">InkoopOrder</a></li>
+                                                    <li class="class"><a href="../classes/Installer.html">Installer</a></li>
+                                                    <li class="class"><a href="../classes/Klant.html">Klant</a></li>
+                                                    <li class="class"><a href="../classes/LayoutView.html">LayoutView</a></li>
+                                                    <li class="class"><a href="../classes/Leverancier.html">Leverancier</a></li>
+                                                    <li class="class"><a href="../classes/LoginController.html">LoginController</a></li>
+                                                    <li class="class"><a href="../classes/LoginView.html">LoginView</a></li>
+                                                    <li class="class"><a href="../classes/Maaltijd.html">Maaltijd</a></li>
+                                                    <li class="class"><a href="../classes/MaaltijdController.html">MaaltijdController</a></li>
+                                                    <li class="class"><a href="../classes/Order.html">Order</a></li>
+                                                    <li class="class"><a href="../classes/OrderController.html">OrderController</a></li>
+                                                    <li class="class"><a href="../classes/OrderFormView.html">OrderFormView</a></li>
+                                                    <li class="class"><a href="../classes/OrderPlacedView.html">OrderPlacedView</a></li>
+                                                    <li class="class"><a href="../classes/OrderRegel.html">OrderRegel</a></li>
+                                                    <li class="class"><a href="../classes/RegisterView.html">RegisterView</a></li>
+                                                    <li class="class"><a href="../classes/TableView.html">TableView</a></li>
+                                                    <li class="class"><a href="../classes/ViewGenerator.html">ViewGenerator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>ArtikelOrder</h1>
+                    <p><em>Represents a buying order for an item, from Eat-IT to an upstream vendor.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/MineTurtle.Model.html#method_getTableName" class="">getTableName()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method___set" class="">__set()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method___isset" class="">__isset()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_getLinkId" class="">getLinkId()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_save" class="">save()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_isDirty" class="">isDirty()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_toArray" class="">toArray()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_getSchema" class="">getSchema()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_useDB" class="">useDB()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_all" class="">all()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_allBy" class="">allBy()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_find" class="">find()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_findMany" class="">findMany()</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#method_findBy" class="">findBy()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/ArtikelOrder.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/ArtikelOrder.html#property_artikel" class="">$artikel</a><br />
+                                                                    <a href="../classes/ArtikelOrder.html#property_inkooporder" class="">$inkooporder</a><br />
+                                                                    <a href="../classes/ArtikelOrder.html#property_hoeveelheid" class="">$hoeveelheid</a><br />
+                                                                    <a href="../classes/ArtikelOrder.html#property_leverstatus" class="">$leverstatus</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#property_id" class="">$id</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/MineTurtle.Model.html#property_dbConn" class="">$dbConn</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#property_data" class="">$data</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#property_linkCache" class="">$linkCache</a><br />
+                                                                    <a href="../classes/MineTurtle.Model.html#property_dirty" class="">$dirty</a><br />
+                                                                    <a href="../classes/ArtikelOrder.html#property_schema" class="">$schema</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/models.ArtikelOrder.html"><div class="path-wrapper">models/ArtikelOrder.inc</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                        <div class="namespace-wrapper"><a href="../classes/MineTurtle.Model.html">\MineTurtle\Model</a></div>
+                                                                    
+                                        <div class="namespace-wrapper"><a href="../classes/EatITModel.html">\EatITModel</a></div>
+                                                                                                    <div class="namespace-wrapper">\ArtikelOrder</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Marijn Pool <a href="mailto:info@marijnpool.nl">info@marijnpool.nl</a></p>
+                                                                    <p>René Kooi <a href="mailto:rene@kooi.me">rene@kooi.me</a></p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$id</h3>
+                <pre class="signature">$id : integer</pre>
+                <p><em></em></p>
+                <p>Primary key ID of this order.</p>
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_artikel" name="property_artikel" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$artikel</h3>
+                <pre class="signature">$artikel : \Artikel</pre>
+                <p><em></em></p>
+                <p>Type of item that's being ordered.</p>
+
+                                <h4>Type</h4>
+                \Artikel
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_inkooporder" name="property_inkooporder" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$inkooporder</h3>
+                <pre class="signature">$inkooporder : \InkoopOrder</pre>
+                <p><em></em></p>
+                <p>The full order that this item order is a part of.</p>
+
+                                <h4>Type</h4>
+                \InkoopOrder
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_hoeveelheid" name="property_hoeveelheid" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$hoeveelheid</h3>
+                <pre class="signature">$hoeveelheid : integer</pre>
+                <p><em></em></p>
+                <p>Amount of items that are being ordered.</p>
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_leverstatus" name="property_leverstatus" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$leverstatus</h3>
+                <pre class="signature">$leverstatus : integer</pre>
+                <p><em></em></p>
+                <p>Current status of this order: sent, acknowledged, completed, etc.</p>
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$id</h3>
+                <pre class="signature">$id : integer</pre>
+                <p><em></em></p>
+                <p>The primary key ID of this Model.</p>
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dbConn" name="property_dbConn" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dbConn</h3>
+                <pre class="signature">$dbConn : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_data" name="property_data" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$data</h3>
+                <pre class="signature">$data : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_linkCache" name="property_linkCache" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$linkCache</h3>
+                <pre class="signature">$linkCache : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dirty" name="property_dirty" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dirty</h3>
+                <pre class="signature">$dirty : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_schema" name="property_schema" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$schema</h3>
+                <pre class="signature">$schema : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTableName" name="method_getTableName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTableName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTableName() : string</pre>
+                <p><em>Returns the in-database table name for this Model.</em></p>
+                <p>By default, Models are assumed to have singular BumpyCased names, and tables
+are assumed to have lowercase plural names, so this converts the former to the latter.
+Override if your database uses a different naming convention!</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Table name.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$data = array()</span>) </pre>
+                <p><em>Model constructor. You usually won&#039;t need this.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>Default data for this Model.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___set" name="method___set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__set(string  <span class="argument">$prop</span>, mixed  <span class="argument">$value</span>) : void</pre>
+                <p><em>Sets a property on the model and marks as dirty.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$prop </td>
+                                <td><p>The property name.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The new value for the property.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(string  <span class="argument">$prop</span>) : void</pre>
+                <p><em>Gets a property from the model.</em></p>
+                <p>Throws if the property does not exist
+according to the Model's schema. Resolves linked records if necessary.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$prop </td>
+                                <td><p>The property name.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\MineTurtle\Exception</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___isset" name="method___isset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__isset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__isset(string  <span class="argument">$prop</span>) : boolean</pre>
+                <p><em>Checks if a property exists according to the schema.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$prop </td>
+                                <td><p>The property name.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if the property exists, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLinkId" name="method_getLinkId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLinkId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLinkId(string  <span class="argument">$link</span>) : integer|null</pre>
+                <p><em>Finds the ID of the Model that is referenced by the given property.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$link </td>
+                                <td><p>The name of the linking property.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer|null
+                                            &mdash; <p>The ID of the related Model, or null if there is no related Model.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_save" name="method_save" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">save()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">save() : void</pre>
+                <p><em>Saves this Model to the database, if it is marked dirty.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete() : void</pre>
+                <p><em>Removes the Model from the database. Be VERY careful with this please -.-</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isDirty" name="method_isDirty" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isDirty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isDirty() : boolean</pre>
+                <p><em>Returns whether the Model is marked dirty, i.e., if it has unsynced changes with the database.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if the Model was changed since its last fetch or save, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toArray" name="method_toArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toArray() : array</pre>
+                <p><em>Returns an associative array with this Model&#039;s information, including resolved linked Models.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSchema" name="method_getSchema" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSchema()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSchema() : \MineTurtle\Database\Schema</pre>
+                <p><em>Gets the database Schema for this Model class. Can only be called on subclasses of Model.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/MineTurtle.Database.Schema.html">\MineTurtle\Database\Schema</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_useDB" name="method_useDB" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">useDB()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">useDB(\MineTurtle\DatabaseConnector  <span class="argument">$db</span>) : void</pre>
+                <p><em>Tells Model which database connection to use.</em></p>
+                <p>Make sure to call this before you start your day, or it will be your last.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\MineTurtle\DatabaseConnector</td>
+                                <td>$db </td>
+                                <td><p>Connection to a database.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_all" name="method_all" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">all()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">all() : \MineTurtle\Collection</pre>
+                <p><em>Returns a Collection of all available Models of this type.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/MineTurtle.Collection.html">\MineTurtle\Collection</a>
+                                            &mdash; <p>All the available Models.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_allBy" name="method_allBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">allBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">allBy(  <span class="argument">$prop</span>,   <span class="argument">$value</span>) : \MineTurtle\Collection</pre>
+                <p><em>Returns a Collection of all available Models of this type.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$prop </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/MineTurtle.Collection.html">\MineTurtle\Collection</a>
+                                            &mdash; <p>All the available Models.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_find" name="method_find" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">find()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">find(integer  <span class="argument">$id</span>) : \MineTurtle\Model|null</pre>
+                <p><em>Finds a specific Model by primary key.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$id </td>
+                                <td><p>Primary key ID.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/MineTurtle.Model.html">\MineTurtle\Model</a>|null
+                                            &mdash; <p>The specified Model, or null if it does not exist.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findMany" name="method_findMany" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findMany()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findMany(array&lt;mixed,integer&gt;  <span class="argument">$ids</span>) : \MineTurtle\Collection</pre>
+                <p><em>Finds a Collection of Models by primary key.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array&lt;mixed,integer&gt;</td>
+                                <td>$ids </td>
+                                <td><p>Primary key IDs to look for.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/MineTurtle.Collection.html">\MineTurtle\Collection</a>
+                                            &mdash; <p>The specified Models.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findBy" name="method_findBy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findBy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findBy(string  <span class="argument">$property</span>, \MineTurtle\*  <span class="argument">$value</span>) : \MineTurtle\Model|null</pre>
+                <p><em>Finds a specific Model by a property. Returns only one, even if there would be many results.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$property </td>
+                                <td><p>Property to check.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\MineTurtle\*</td>
+                                <td>$value </td>
+                                <td><p>Value to restrict to.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/MineTurtle.Model.html">\MineTurtle\Model</a>|null
+                                            &mdash; <p>The specified Model, or null if it does not exist.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/MineTurtle.Model.html"><div class="path-wrapper">\MineTurtle\Model</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">ArtikelOrder.inc</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/models/ArtikelOrder.inc.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/MineTurtle.html">\MineTurtle</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on November 12th, 2014 at 15:14.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

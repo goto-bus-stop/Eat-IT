@@ -1,0 +1,17 @@
+<?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+
+/**
+ * Renders the order acknowledgement page.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+class OrderPlacedView extends MineTurtle\View {
+
+  protected $template = 'templates/orderplaced.tpl';
+
+}

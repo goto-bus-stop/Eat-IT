@@ -1,0 +1,36 @@
+<?php
+/**
+ * @package MineTurtle
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+
+namespace MineTurtle;
+
+/**
+ * A View renders something to the browser.
+ *
+ * @package MineTurtle
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+class View {
+
+  /** @type string|null Template file path. By default, this will be used to render the View data. */
+  protected $template;
+
+  /**
+   * Renders this view.
+   *
+   * @param array|object $data Data.
+   *
+   * @return string Resulting source.
+   */
+  public function render($data) {
+    if (!is_null($this->template)) {
+      $tpl = new Template(file_get_contents($this->template));
+      return $tpl->render($data);
+    }
+  }
+
+}
