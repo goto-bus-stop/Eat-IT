@@ -5,13 +5,16 @@
  * @author  René Kooi <rene@kooi.me>
  */
 
+namespace MineTurtle\Database;
+use MineTurtle\Collection;
+
 /**
  * A CSV file based data store.
  *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
-class CSVConnector implements DatabaseConnector {
+class CSVConnector implements Connector {
 
   private $pdo;
   private $queries;
@@ -202,6 +205,20 @@ class CSVConnector implements DatabaseConnector {
     $sql .= ' WHERE `' . $schema->getPrimaryKey() . '` = :id';
 
     return $this->execute($sql, array( 'id' => $id ));
+  }
+
+  /**
+   * Creates a database table for the given model.
+   *
+   * @param string $Model Model class.
+   *
+   * @return bool True if succeeded, false otherwise.
+   */
+  public function createTable($Model) {
+    // this also happens to create a new file if it doesn't exist
+    $file = $this->file($Model);
+    fclose($file);
+    return true;
   }
 
   /**
