@@ -1,0 +1,45 @@
+<?php
+
+// Set to true to generate simple template View classes on the fly
+// when trying to instantiate a nonexistent View.
+const USE_VIEW_GENERATOR = false;
+
+require 'MineTurtle/include.inc';
+
+require 'traits/AuthTrait.inc';
+require 'traits/EmailTrait.inc';
+
+require 'templates/helpers.inc';
+
+
+require 'models/EatITModel.inc';
+require 'models/Artikel.inc';
+require 'models/ArtikelOrder.inc';
+require 'models/Ingredient.inc';
+require 'models/InkoopFactuur.inc';
+require 'models/InkoopOrder.inc';
+require 'models/Klant.inc';
+require 'models/Leverancier.inc';
+require 'models/Maaltijd.inc';
+require 'models/Order.inc';
+require 'models/OrderRegel.inc';
+
+require 'controllers/EatITController.inc';
+require 'controllers/IndexController.inc';
+require 'controllers/LoginController.inc';
+require 'controllers/OrderController.inc';
+require 'controllers/MaaltijdController.inc';
+
+require 'views/LayoutView.inc';
+if (USE_VIEW_GENERATOR) {
+  require 'views/ViewGenerator.inc';
+}
+else {
+  require 'views/LoginView.inc';
+  require 'views/RegisterView.inc';
+  require 'views/IndexView.inc';
+  require 'views/OrderFormView.inc';
+  require 'views/OrderPlacedView.inc';
+  require 'views/TableView.inc';
+}
+

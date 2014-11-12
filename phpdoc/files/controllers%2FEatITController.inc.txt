@@ -1,0 +1,33 @@
+<?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+
+/**
+ * Base Controller class for Eat-IT.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+class EatITController {
+  use AuthTrait;
+
+  /**
+   * Renders a page with the given content.
+   *
+   * @param string $content Content to insert into the layout template.
+   *
+   * @return void
+   */
+  protected function render($content) {
+    $data = array(
+      'title' => !empty($this->title) ? $this->title . ' « Eat-IT' : 'Eat-IT',
+      'content' => $content,
+      'user' => $this->getCurrentUser()
+    );
+    $layout = new LayoutView();
+    echo $layout->render($data);
+  }
+
+}

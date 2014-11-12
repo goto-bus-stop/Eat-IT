@@ -1,0 +1,33 @@
+<?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+
+/**
+ * Represents a customer.
+ *
+ * @property int    $id       Primary key ID of this customer.
+ * @property string $naam     Customer name.
+ * @property string $adres    Customer street address.
+ * @property string $postcode ZIP/postal code of this customer.
+ * @property string $plaats   Customer's city of residence.
+ * @property string $telefoon Customer's telephone number.
+ * @property string $email    Customer's email address.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
+class Klant extends EatITModel {
+
+  protected static $schema = array(
+    'klantnr' => 'id',
+    'naam' => 'string:64',
+    'adres' => 'string:128',
+    'postcode' => 'string:8',
+    'plaats' => 'string:64',
+    'telefoon' => 'string:20',
+    'email' => 'string:128',
+  );
+
+}

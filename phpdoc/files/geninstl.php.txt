@@ -1,0 +1,34 @@
+<?php
+
+require 'include.inc';
+
+$db = new MineTurtle\Database\PDOConnector('mysql:host=localhost;dbname=eatit', 'root', '');
+MineTurtle\Model::useDB($db);
+
+class Installer extends MineTurtle\Model {
+
+  function r() {
+    echo '<?php'.PHP_EOL;
+
+    foreach (Artikel::all() as $a) {
+      $data = $a->data;
+      unset($data['artikelnr']);
+      echo '$a = new Artikel(' . var_export($data, 1) . ');'."\n";
+      echo '$a->save();'."\n\n";
+    }
+    foreach (Maaltijd::all() as $a) {
+      $data = $a->data;
+      unset($data['maaltijdnr']);
+      echo '$a = new Maaltijd(' . var_export($data, 1) . ');'."\n";
+      echo '$a->save();'."\n\n";
+    }
+    foreach (Ingredient::all() as $a) {
+      $data = $a->data;
+      unset($data['ingredientnr']);
+      echo '$a = new Ingredient(' . var_export($data, 1) . ');'."\n";
+      echo '$a->save();'."\n\n";
+    }
+  }
+}
+
+(new Installer())->r();

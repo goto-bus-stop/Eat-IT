@@ -208,20 +208,6 @@ class CSVConnector implements Connector {
   }
 
   /**
-   * Creates a database table for the given model.
-   *
-   * @param string $Model Model class.
-   *
-   * @return bool True if succeeded, false otherwise.
-   */
-  public function createTable($Model) {
-    // this also happens to create a new file if it doesn't exist
-    $file = $this->file($Model);
-    fclose($file);
-    return true;
-  }
-
-  /**
    * Dumps all queries that were executed so far to the user.
    *
    * @return void
@@ -231,3 +217,4 @@ class CSVConnector implements Connector {
   }
 
 }
+
