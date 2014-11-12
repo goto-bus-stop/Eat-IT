@@ -21,9 +21,7 @@
       </a>
       <div class="media-body">
         <h4>{{daghap.naam}}</h4>
-        <p>
-          &hellip;
-        </p>
+        <p>{{daghap.omschrijving}}</p>
         <p>
           <a href="/index.php/{{@link maaltijd_bestellen daghap.id}}" class="btn btn-primary" role="button">Bestel Nu!</a>
         </p>
@@ -40,9 +38,7 @@
         <img src="/data/meal-images/{{maaltijd.img}}" alt="{{maaltijd.naam}}">
         <div class="caption">
           <h3>{{#if maaltijd.daghap}}<i class="glyphicon glyphicon-star text-success"></i> {{/if}}{{maaltijd.naam}}</h3>
-          <p>
-            &hellip;
-          </p>
+          <p>{{maaltijd.omschrijving}}</p>
           <p>
             <a href="/index.php/{{@link maaltijd_bestellen maaltijd.id}}" class="btn btn-primary" role="button">Bestel Nu!</a>
           </p>

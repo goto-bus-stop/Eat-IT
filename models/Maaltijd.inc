@@ -14,10 +14,12 @@ class Maaltijd extends EatITModel {
   protected static $schema = array(
     'maaltijdnr' => 'id',
     'naam' => 'string:64',
+    'omschrijving' => 'string:255',
     'prijs' => 'double',
     'beschikbaar' => 'int',
     'daghap' => 'bool',
     'img' => 'string:128',
+    'type' => 'string:5' // vlees/vis/vega
   );
 
 }
