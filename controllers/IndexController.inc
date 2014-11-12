@@ -1,7 +1,22 @@
 <?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 
+/**
+ * Responds to requests for the index page.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 class IndexController extends EatITController {
 
+  /**
+   * Renders the index page.
+   *
+   * @return void
+   */
   public function get() {
     $layout = new IndexView();
     $this->render(

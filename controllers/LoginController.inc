@@ -1,10 +1,26 @@
 <?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 
+/**
+ * Handles login pages.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 class LoginController extends EatITController {
   use EmailTrait;
 
+  /** @var string Page title. */
   protected $title = 'Login';
 
+  /**
+   * Shows the login page.
+   *
+   * @return void
+   */
   public function get() {
     $view = new LoginView();
     $this->render(
@@ -12,6 +28,11 @@ class LoginController extends EatITController {
     );
   }
 
+  /**
+   * Handles log in requests.
+   *
+   * @return void
+   */
   public function login() {
     $email = $_POST['email'];
     $pass = $_POST['pass'];
@@ -30,13 +51,23 @@ class LoginController extends EatITController {
     }
   }
 
+  /**
+   * Shows the registration page.
+   *
+   * @return void
+   */
   public function register() {
     $view = new RegisterView();
     $this->render(
-      $view->render("")
+      $view->render()
     );
   }
 
+  /**
+   * Handles new customer registrations.
+   *
+   * @return void
+   */
   public function doRegister() {
     $client = new Klant();
     foreach (array( 'email', 'naam', 'adres', 'postcode', 'plaats', 'telefoon' ) as $prop) {

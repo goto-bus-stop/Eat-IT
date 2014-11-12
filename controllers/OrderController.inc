@@ -1,7 +1,22 @@
 <?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 
+/**
+ * Handles order placements.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 class OrderController extends EatITController {
 
+  /**
+   * Shows an order form.
+   *
+   * @return void
+   */
   public function form() {
     $artikel = Artikel::all()->filter(function ($a) { return $a->verkoop != 0; });
     $of = new OrderFormView();
@@ -15,6 +30,13 @@ class OrderController extends EatITController {
     )));
   }
 
+  /**
+   * Handles order placements.
+   *
+   * @param int $klant Customer ID.
+   *
+   * @return void
+   */
   public function placeOrder($klant) {
     $lines = isset($_POST['regel']) ? $_POST['regel'] : false;
     if ($lines) {
@@ -42,7 +64,7 @@ class OrderController extends EatITController {
       $orderLines->save();
     }
     $opv = new OrderPlacedView();
-    $this ->render($opv->render(/*Data*/""));
+    $this ->render($opv->render());
   }
 
 }

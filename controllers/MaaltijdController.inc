@@ -1,7 +1,22 @@
 <?php
+/**
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 
+/**
+ * Lists meals.
+ *
+ * @author  Marijn Pool <info@marijnpool.nl>
+ * @author  René Kooi <rene@kooi.me>
+ */
 class MaaltijdController extends EatITController {
 
+  /**
+   * Renders a list of available meals.
+   *
+   * @return void
+   */
   public function get() {
     $table = new TableView();
     $maaltijd = Maaltijd::all();

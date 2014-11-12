@@ -5,7 +5,8 @@
  */
 
 /**
- * TODO: write docs
+ * Renders a generic table.
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */

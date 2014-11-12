@@ -5,7 +5,8 @@
  */
 
 /**
- * TODO: write docs
+ * Renders the basic page layout.
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */

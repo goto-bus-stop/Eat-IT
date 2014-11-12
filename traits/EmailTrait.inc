@@ -6,11 +6,21 @@
 
 /**
  * Adds email functionality.
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
 trait EmailTrait {
 
+  /**
+   * Sends an email.
+   *
+   * @param string $to      Email address of the recipient.
+   * @param string $subject Email subject line.
+   * @param string $content Email body.
+   *
+   * @return void
+   */
   protected function sendEmail($to, $subject, $content) {
     // only send if we have sendmail (should be the case on prod server…)
     if (in_array('sendmail', get_loaded_extensions())) {

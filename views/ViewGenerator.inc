@@ -5,16 +5,25 @@
  */
 
 /**
- * TODO: write docs
+ * Generates View classes on the fly if they do not exist! :)
+ *
  * @author  Marijn Pool <info@marijnpool.nl>
  * @author  René Kooi <rene@kooi.me>
  */
 class ViewGenerator {
 
+  /**
+   * Autoloader.
+   *
+   * @param string $class Classname.
+   *
+   * @return void
+   */
   public function autoload($class) {
     if (substr($class, -4) === 'View') {
       $tplName = 'templates/' . strtolower(substr($class, 0, -4)) . '.tpl';
       if (file_exists($tplName)) {
+        // define a simple View class that renders a template.
         eval('class ' . $class . ' extends MineTurtle\View {
                 protected $template = ' . var_export($tplName, true) . ';
               }');
